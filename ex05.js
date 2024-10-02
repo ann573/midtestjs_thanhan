@@ -57,64 +57,28 @@ const categories = [
     },
   ]
 
-function createSelect(categories)
-{
-    let code = `<select>`
-    for (let i in categories)
-    {
-        code += `<option value=${categories[i].id}>${categories[i].name}</option>`
-        if (categories[i].children !== undefined)
-        {
-            let arr = categories[i].children
-            for(let i in arr)
-            {
-                code += `<option value="${arr[i].id}">-- ${arr[i].name}</option>`
-            }
-            if (arr[i].children !== undefined)
-            {
-                let newArr = arr[i].children
-                for(let i in arr)
-                {
-                    code += `<option value="${newArr[i].id}">---- ${newArr[i].name}</option>`
-                }
-            }
-        }
-    }
-    code += `</select>`
-
-    console.log(code)
-    return code
-}
-
-document.write(createSelect(categories))
-
-
-
-
-// !Code de quy dang loi   
+  // !Code dang loi   
 // function createSelect(categories)
 // {
 //     let code = `<select>`
 //     for (let i in categories)
 //     {
-
 //         code += `<option value=${categories[i].id}>${categories[i].name}</option>`
 //         if (categories[i].children !== undefined)
 //         {
-//             code+= createOption(categories[i].children, 2)
-//             // let arr = categories[i].children
-//             // for(let i in arr)
-//             // {
-//             //     code += `<option value="${arr[i].id}">-- ${arr[i].name}</option>`
-//             // }
-//             // if (arr[i].children !== undefined)
-//             // {
-//             //     let newArr = arr[i].children
-//             //     for(let i in arr)
-//             //     {
-//             //         code += `<option value="${newArr[i].id}">---- ${newArr[i].name}</option>`
-//             //     }
-//             // }
+//             let arr = categories[i].children
+//             for(let i in arr)
+//             {
+//                 code += `<option value="${arr[i].id}">-- ${arr[i].name}</option>`
+//             }
+//             if (arr[i].children !== undefined)
+//             {
+//                 let newArr = arr[i].children
+//                 for(let i in arr)
+//                 {
+//                     code += `<option value="${newArr[i].id}">---- ${newArr[i].name}</option>`
+//                 }
+//             }
 //         }
 //     }
 //     code += `</select>`
@@ -123,20 +87,56 @@ document.write(createSelect(categories))
 //     return code
 // }
 
-// function createOption(arr, number)
-// {
-//     console.log("start")
-//     let code = " "
-//     for(let i in arr)
-//     {
-//         code += `<option value="${arr[i].id}"> ${arr[i].name.padStart(arr[i].name.length + number, '-')}</option>`
-//         console.log(code)
-//         if(arr[i].children !== undefined)
-//         {
-//             console.log("check: ", arr[i].children)
-//             code += createOption(arr[i].children , number+=2);
-//         }
-//     }
-//     return code
-// }
 // document.write(createSelect(categories))
+
+
+
+
+function createSelect(categories)
+{
+    let code = `<select>`
+    for (let i in categories)
+    {
+
+        code += `<option value=${categories[i].id}>${categories[i].name}</option>`
+        if (categories[i].children !== undefined)
+        {
+            code+= createOption(categories[i].children, 2)
+            // let arr = categories[i].children
+            // for(let i in arr)
+            // {
+            //     code += `<option value="${arr[i].id}">-- ${arr[i].name}</option>`
+            // }
+            // if (arr[i].children !== undefined)
+            // {
+            //     let newArr = arr[i].children
+            //     for(let i in arr)
+            //     {
+            //         code += `<option value="${newArr[i].id}">---- ${newArr[i].name}</option>`
+            //     }
+            // }
+        }
+    }
+    code += `</select>`
+
+    console.log(code)
+    return code
+}
+
+function createOption(arr, number)
+{
+    console.log("start")
+    let code = " "
+    for(let i in arr)
+    {
+        code += `<option value="${arr[i].id}"> ${arr[i].name.padStart(arr[i].name.length + number, '-')}</option>`
+        console.log(code)
+        if(arr[i].children !== undefined)
+        {
+            console.log("check: ", arr[i].children)
+            code += createOption(arr[i].children , number+=2);
+        }
+    }
+    return code
+}
+document.write(createSelect(categories))
